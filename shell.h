@@ -15,6 +15,7 @@
 #define MAX_LINE 80
 #define MAX_TOKENS 32
 
+extern char **environ;
 int is_builtin(char *cmd);
 char **tokenize_line(char *line, int *token_count);
 void execute_command(char **argv);

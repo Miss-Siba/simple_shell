@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- *read_and_parse_input -  Reads line from stdin and parses into arguments
+ * read_and_parse_input -  Reads line from stdin and parses into arguments
  * @line: pointer to buffer
  * @len: size of buffer
  * @args: array of pointers to store parsed arguments
@@ -39,9 +39,9 @@ return (1);
 }
 
 /**
- *main - Runs a shell program that executes commands entered a user
+ * main - Runs a shell program that executes commands entered a user
  *
- *return:0 if the program exits normally, 1 if an error occurs
+ * Return: 0 if the program exits normally, 1 if an error occurs
  */
 int main(void)
 {

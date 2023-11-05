@@ -51,3 +51,18 @@ char **tokenize_line(char *line, int *token_count)
 	}
 	return (tokens);
 }
+/**
+ * free_tokens - frees tokens.
+ * @tokens: tokens.
+ * @token_count: token count
+ */
+void free_tokens(char **tokens, int token_count)
+{
+	int i;
+
+	for (i = 0; i < token_count; i++)
+	{
+		free(tokens[i]);
+	}
+	free(tokens);
+}

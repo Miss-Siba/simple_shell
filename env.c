@@ -5,11 +5,11 @@
 
 void print_env(void)
 {
+	char **env = environ;
 
-	int i = 0;
-
-	for (i = 0; environ != NULL; i++)
+	while (*env)
 	{
-		printf("%s\n", environ[i]);
+		printf("%s\n", *env);
+		env++;
 	}
 }

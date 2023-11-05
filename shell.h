@@ -12,6 +12,7 @@
 
 #define MAX_LINE_LENGTH 1024
 #define MAX_ARGUMENTS 64
+#define MAX_LINE 80
 
 int is_builtin(char *cmd);
 char **tokenize_line(char *line, int *token_count);

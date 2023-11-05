@@ -1,5 +1,13 @@
 #include "shell.h"
 
+/**
+ *read_and_parse_input -  Reads line from stdin and parses into arguments
+ * @line: pointer to buffer
+ * @len: size of buffer
+ * @args: array of pointers to store parsed arguments
+ * Return: 1 if input is valid or 0 if it's exit
+ */
+
 int read_and_parse_input(char *line, size_t len, char *args[])
 {
 ssize_t nread;
@@ -30,7 +38,11 @@ return (1);
 }
 }
 
-
+/**
+ *main - Runs a shell program that executes commands entered a user
+ *
+ *return:0 if the program exits normally, 1 if an error occurs
+ */
 int main(void)
 {
 char *line;

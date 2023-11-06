@@ -1,14 +1,19 @@
 #include “shell.h”
-
+/**
+ * main - main function of the shell program
+ * @c: the number of arguments passed to the program
+ * @argv: an array of strings containing the arguments
+ * return: 0 on success, -1 on failure
+ */
 int main(int c, char **argv)
-{ 
+{
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t nchars_read;
 	(void)c;
 
 	while (1)
-	{ 
+	{
 		printf("Dreamteam$ ");
 		nchars_read = getline(&line, &len, stdin);
 		if (nchars_read == -1)
@@ -16,7 +21,7 @@ int main(int c, char **argv)
 			perror(“Input error.\n”);
 			return (-1);
 		}
-		if (feof(stdin)) 
+		if (feof(stdin))
 		{
 			return (-1);
 		}
@@ -51,9 +56,9 @@ void process_line(char *line, char **argv)
 	for (i = 0; token != NULL; i++)
 	{
 		argv[i] = malloc(sizeof(char) * strlen(token));
-    		if (argv[i] == NULL)
-    		{
-        		perror("Failed to allocate memory");
+		if (argv[i] == NULL)
+		{
+			perror("Failed to allocate memory");
 			free(line_copy);
 			free(argv);
 			return;

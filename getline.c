@@ -8,7 +8,8 @@
  */
 ssize_t _getline(char **buffer, size_t *size, FILE *stream)
 {
-	ssize_t read_chars = 0, total_chars = 0;
+	ssize_t read_chars = 0;
+	static ssize_t	total_chars;
 	int ch;
 	char *temp;
 
@@ -35,8 +36,7 @@ ssize_t _getline(char **buffer, size_t *size, FILE *stream)
 			}
 			*buffer = temp;
 		}
-		(*buffer)[read_chars] = ch;
-		read_chars++, total_chars++;
+		(*buffer)[read_chars] = ch, read_chars++, total_chars++;
 		if (ch == '\n')
 		{
 			break;
@@ -46,6 +46,6 @@ ssize_t _getline(char **buffer, size_t *size, FILE *stream)
 	{
 		return (-1);
 	}
-	(*buffer)[read_chars] = '\0';
+	(*buffer)[read_chars] = '\0', total_chars += read_chars;
 	return (total_chars);
 }

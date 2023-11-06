@@ -13,7 +13,7 @@ int main(void)
 
 	while (1)
 	{
-		printf("Dreamtean$ ");
+		printf("Dreamteam$ ");
 		nchars_read = getline(&line, &length, stdin);
 		if (nchars_read == -1)
 		{

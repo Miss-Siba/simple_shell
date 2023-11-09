@@ -11,6 +11,7 @@
 #include <dirent.h>
 
 #define MAX_LINE_LENGTH 1024
+#define MAX_INPUT_SIZE 1024
 #define MAX_ARGUMENTS 64
 #define MAX_LINE 80
 #define MAX_TOKENS 32

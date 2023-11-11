@@ -25,8 +25,14 @@ int main(void)
 	}
 
 	value = getenv("VARIABLE");
-	printf("New VARIABLE = %s\n", value);
-
+	if (value == NULL)
+	{
+		printf("New VARIABLE = %s\n", value);
+	}
+	else
+	{
+		printf("Variable not unset, %s\n", value);
+	}
 	return (0);
 }
 

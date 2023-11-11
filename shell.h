@@ -24,6 +24,8 @@ char **tokenize_line(char *line, int *token_count);
 void execute_command(char **argv);
 void free_tokens(char **tokens, int token_count);
 void print_env(void);
+void handle_cd(char *args[]);
+void update_pwd(void);
 ssize_t _getline(char **buffer, size_t *size, FILE *stream);
 
 #endif

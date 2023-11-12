@@ -29,5 +29,8 @@ void update_pwd(void);
 void update_prompt(void);
 void parse_and_execute(char *input);
 ssize_t _getline(char **buffer, size_t *size, FILE *stream);
+char **parse_line(char *line);
+void execute_command(char **args);
+int is_comment(char *line);
 
 #endif

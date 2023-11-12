@@ -33,14 +33,21 @@ void handle_cd(char *args[])
 	}
 	else
 	{
-		if (strcmp(args[1], "-") ==0)
+		if (strcmp(args[1], "-") == 0)
 		{
-			if (chdir(prev_dir) != 0)
+			if (prev_dir[0] != '\0')
 			{
-				perror("cd");
+				if (chdir(prev_dir) != 0)
+				{
+					perror("cd");
+				}
+				update_pwd();
+				getcwd(prev_dir, sizeof(prev_dir));
 			}
 			else
 			{
+				fprintf(stderr, "cd: no previous directory\n");
+			}
 				if (chdir(args[1]) != 0)
 				{
 					perror("cd");
@@ -49,21 +56,6 @@ void handle_cd(char *args[])
 				update_pwd();
 				getcwd(prev_dir, sizeof(prev_dir));
 			}
-		}
 	}
 }
 
-int main(void)
-{
-	char *args[20];
-	getcwd(prev_dir, sizeof(prev_dir));
-
-	if (args[0] != NULL)
-	{
-		if (strcmp(args[0], "cd") == 0)
-		{
-			handle_cd(args);
-		}
-	}
-	return (0);
-}

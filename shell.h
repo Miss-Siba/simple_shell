@@ -18,6 +18,7 @@
 #define PROMPT "dreamteam$"
 
 extern char **environ;
+char prev_dir[100];
 int is_builtin(char *cmd);
 int read_and_parse_input(char *line, size_t len, char *args[]);
 char **tokenize_line(char *line, int *token_count);

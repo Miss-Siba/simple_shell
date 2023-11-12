@@ -27,6 +27,7 @@ void print_env(void);
 void handle_cd(char *args[]);
 void update_pwd(void);
 void update_prompt(void);
+void parse_and_execute(char *input);
 ssize_t _getline(char **buffer, size_t *size, FILE *stream);
 
 #endif

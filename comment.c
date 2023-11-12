@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/**
+ * parse_line - Parses a line of input into tokens
+ * @line: a pointer to a string containing the input
+ * Return: A pointer to an array of strings containing the tokens
+ */
 char **parse_line(char *line)
 {
 	char **tokens = malloc(MAX_LINE * sizeof(char *));
@@ -7,7 +12,6 @@ char **parse_line(char *line)
 	int index = 0;
 
 	token = strtok(line, " \t\r\n\a");
-	
 	while (token != NULL)
 	{
 		tokens[index] = token;
@@ -15,9 +19,14 @@ char **parse_line(char *line)
 		token = strtok(NULL, "\t\r\n\a");
 	}
 tokens[index] = NULL;
-return tokens;
+return (tokens);
 }
 
+/**
+ * execute_command - Executes a command given by a user
+ * @args: a pointer to an array of strings containing a command and arguments
+ * Return: None
+ */
 void execute_command(char **args)
 {
 	pid_t pid;
@@ -31,27 +40,37 @@ void execute_command(char **args)
 			perror("simple shell");
 		}
 	exit(EXIT_FAILURE);
-  	}
+	}
 	else if (pid < 0)
 	{
 		perror("shell");
 	}
 	else
 	{
-		do
-		{
+		do {
 			waitpid(pid, &status, WUNTRACED);
 		}
+
 		while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
 }
 
+/**
+ * is_comment -  Checks if a line of input is a comment
+ * @line: a pointer to a string containing the input
+ * Return: 1 if line is a comment or 0 if it is not
+ */
 int is_comment(char *line)
 {
-	return line[0] == '#';
+	return (line[0] == '#');
 }
 
-int main(void) 
+/**
+ * main - main function of the simple shell program
+ *
+ * Return: 0 if the program exits normally, non-zero otherwise
+ */
+int main(void)
 {
 	char *line;
 	char **args;
@@ -63,6 +82,7 @@ int main(void)
 		fflush(stdout);
 
 		size_t len = 0;
+
 		getline(&line, &len, stdin);
 
 		if (is_comment(line))
@@ -83,5 +103,5 @@ int main(void)
 		free(line);
 		free(args);
 	}
-return 0;
+return (0);
 }

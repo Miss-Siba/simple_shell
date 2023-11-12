@@ -18,7 +18,6 @@
 #define PROMPT "dreamteam$"
 
 extern char **environ;
-char prev_dir[100];
 int is_builtin(char *cmd);
 int read_and_parse_input(char *line, size_t len, char *args[]);
 char **tokenize_line(char *line, int *token_count);
@@ -27,6 +26,7 @@ void free_tokens(char **tokens, int token_count);
 void print_env(void);
 void handle_cd(char *args[]);
 void update_pwd(void);
+void update_prompt(void);
 ssize_t _getline(char **buffer, size_t *size, FILE *stream);
 
 #endif

@@ -60,20 +60,31 @@ void cd_command(char **args)
 }
 int main(void)
 {
-	char *line;
+	char *line = 0;
 	char **args;
-	int status;
+	int status = 1;
+	int token_count;
+	ssize_t nchars_read;
+	size_t len = 0;
 
 	do 
 	{
-		printf("dreamteam$");
-		line = read_line();
-		args = split_line(line);
-		status = execute_command(args);
-		free(line);
-		free(args);
+		printf("dreamteam$ ");
+		nchars_read = getline(&line, &len, stdin);
+
+		if (nchars_read == -1)
+		{
+			perror("Unable to get line");
+			return (-1);
+		}
+		line[strcspn(line, "\n")] = '\0';
+
+		args = tokenize_line(line, &token_count);
+		execute_command(args);
+		free_tokens(args, token_count);
 	}
 	while (status);
+free(line);
 
-	return (0);
+return (0);
 }

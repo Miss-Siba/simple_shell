@@ -49,6 +49,7 @@ char **tokenize_line(char *line, int *token_count)
 		}
 		token = strtok(NULL, " \t\n");
 	}
+	tokens[*token_count] = NULL;
 	return (tokens);
 }
 /**

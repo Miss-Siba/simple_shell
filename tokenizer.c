@@ -22,7 +22,6 @@ char **tokenize_line(char *line, int *token_count)
 
 	token = strtok(line, " \t\n");
 	*token_count = 0;
-
 	while (token != NULL)
 	{
 		tokens[*token_count] = strdup(token);

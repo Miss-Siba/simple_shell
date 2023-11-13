@@ -1,5 +1,8 @@
 #include "shell.h"
-
+/**
+ * main -main
+ * Return: 0
+ */
 int main(void)
 {
 	char *line = NULL;

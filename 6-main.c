@@ -1,5 +1,8 @@
 #include "shell.h"
-
+/**
+ * main - main
+ * Return: 0
+ */
 int main(void)
 {
 	char *buffer = NULL;
@@ -10,7 +13,7 @@ int main(void)
 
 	if (chars_read > 0)
 	{
-		printf("Read %ld character: %s\n",(long)chars_read, buffer);
+		printf("Read %ld character: %s\n", (long)chars_read, buffer);
 	}
 		else if (chars_read == 0)
 		{

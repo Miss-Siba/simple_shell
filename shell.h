@@ -52,5 +52,6 @@ char **parse_line(char *line);
 void execute_command(char **args);
 int is_comment(char *line);
 char *read_line(void);
+int handle_builtin(char **tokens, int token_count);
 
 #endif

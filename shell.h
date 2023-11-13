@@ -32,5 +32,6 @@ ssize_t _getline(char **buffer, size_t *size, FILE *stream);
 char **parse_line(char *line);
 void execute_command(char **args);
 int is_comment(char *line);
+char *read_line(void);
 
 #endif

@@ -5,7 +5,9 @@ int var_count = 0;
 
 char *find_var(char *name)
 {
-	for (int i = 0; i < var_count; i++)
+	int i;
+
+	for (i = 0; i < var_count; i++)
 	{
 		if (strcmp(vars[i].name, name) == 0)
 		{
@@ -59,25 +61,34 @@ char *replace_var(char *str)
 			char *value = find_var(name);
 			
 			if (value != NULL)
-			{
-			return strdup(value);
+			{	
+				return strdup(value);
 			}
+		}
+		
+		return strdup(str);
 	}
 	return strdup(str);
 }
 
 int main(void)
 {
+	char *greetings;
+	char *status_str;
+	char *pid_str;
+	pid_t pid;
+	int status;
+
 	set_var("First name", "Tshilidzi");
 	set_var("age", "24");
 	set_var("greetings", "Hello, $First name, You are $age years old.");
 
-	char *greetings = replace_var(find_var("greetings"));
+	greetings = replace_var(find_var("greetings"));
 
 	printf("%s\n", greetings);
 	free(greetings);
+	pid = fork();
 
-	pid_t pid = fork();
 	if (pid == 0)
 	{
 		execlp("ls", "ls", "-l", NULL);
@@ -93,15 +104,15 @@ int main(void)
 		exit(1);
 	}
 
-	char *status_str = replace_var("$?");
+	status_str = replace_var("$?");
 	
 	printf("The exit status of last command was %s\n", status_str);
 	free(status_str);
 
-	char *pid_str = replace_var("$$");
+	pid_str = replace_var("$$");
 
 	printf("The process ID of current program is %s\n", pid_str);
 	free(pid_str);
 	return (0);
 }
-}
+

@@ -75,13 +75,12 @@ int main(void)
 	char *line;
 	char **args;
 	int should_run = 1;
+	size_t len = 0;
 
 	while (should_run)
 	{
 		printf("dreamteam$");
 		fflush(stdout);
-
-		size_t len = 0;
 
 		getline(&line, &len, stdin);
 

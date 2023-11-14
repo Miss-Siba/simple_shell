@@ -12,8 +12,8 @@ int main(int argc, char *argv[])
 
 	if (argc < 2)
 	{
-		perror("Usage: ./path filename");
-			return (-1);
+		fprintf(stderr, "Usage: %s filename", argv[0]);
+		return (-1);
 	}
 
 	for (i = 1; i < argc; i++)
@@ -24,21 +24,36 @@ int main(int argc, char *argv[])
 		if (pid == -1)
 		{
 			perror("Fork failed");
-				return (-1);
+			return (-1);
 		}
-			else if (pid == 0)
-			{
-			char *cmd[] = {"which", file, NULL};
-
+		else if (pid == 0)
+		{
+			char *cmd[] = {NULL, NULL};
+			cmd[0] = "which";
+			cmd[1] = file;
 			execvp("which", cmd);
 			perror("Execvp Failed");
-				return (-1);
-			}
+			exit(EXIT_FAILURE);
+		}
 		else
 		{
-		int status;
+			int status;
 
-		waitpid(pid, &status, 0);
+			waitpid(pid, &status, 0);
+			if (WIFEXITED(status))
+			{
+				int exit_status = WEXITSTATUS(status);
+				if (exit_status != 0)
+				{
+					fprintf(stderr, "Command failed with exit status %d\n", exit_status);
+					return (-1);
+				}
+			}
+			else
+			{
+				fprintf(stderr, "Command terminated abnormally\n");
+				return (-1);
+			}
 		}
 	}
 	return (0);

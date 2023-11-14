@@ -52,6 +52,7 @@ void remove_alias(ShellState *state, char *alias_name);
 void update_pwd(void);
 void process_command(char *line, ShellState *state);
 void update_prompt(void);
+char *replace_var(char *command);
 void parse_and_execute(char *input);
 void list_aliases(ShellState *state);
 void add_alias(ShellState *state, char *alias_name, char *alias_value);

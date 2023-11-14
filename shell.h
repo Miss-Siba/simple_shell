@@ -17,6 +17,7 @@
 #define MAX_TOKENS 32
 #define MAX_ALIAS 20
 #define PROMPT "dreamteam$"
+#define MAX_VARS 100
 
 typedef struct
 {
@@ -31,6 +32,13 @@ typedef struct
 	int count;
 }
 ShellState;
+
+typedef struct
+{
+	char *name;
+	char *value;
+}
+variable;
 
 extern char **environ;
 int is_builtin(char *cmd);

@@ -1,15 +1,25 @@
 #include "shell.h"
 
+/**
+ * is_valid_path - checks if gevin path exists
+ * @path: the path to check
+ * Return: 1 if the path exists 0 if path does not exist
+ */
 int is_valid_path(char *path)
 {
-	return access(path, F_OK) == 0;
+	return (access(path, F_OK) == 0);
 }
 
+/**
+ * change_directory - changes current directory to given path
+ * @path: the path to change to
+ * Return: Nothing
+ */
 void change_directory(char *path)
 {
 	char *old_pwd = getenv("PWD");
 	char *new_pwd = realpath(path, NULL);
-	
+
 	if (chdir(path) == 0)
 	{
 		printf("Directory changed to %s\n", new_pwd);
@@ -23,11 +33,17 @@ void change_directory(char *path)
 	}
 }
 
+/**
+ * cd_command - Implements the cd command of a shell
+ * @args:  arguments of the cd command
+ * Return: nothing
+ */
 void cd_command(char **args)
 {
 	if (args[1] == NULL)
 	{
 		char *home = getenv("HOME");
+
 		change_directory(home);
 	}
 	else if (args[2] != NULL)
@@ -37,6 +53,7 @@ void cd_command(char **args)
 	else if (strcmp(args[1], "-") == 0)
 	{
 		char *old_pwd = getenv("OLDPWD");
+
 		if (old_pwd != NULL)
 		{
 			change_directory(old_pwd);
@@ -58,6 +75,12 @@ void cd_command(char **args)
 		}
 	}
 }
+
+/**
+ * main - entry point of the C program
+ *
+ * Return:  0 on success and  -1 on error
+ */
 int main(void)
 {
 	char *line = 0;
@@ -67,8 +90,7 @@ int main(void)
 	ssize_t nchars_read;
 	size_t len = 0;
 
-	do 
-	{
+	do {
 		printf("dreamteam$ ");
 		nchars_read = getline(&line, &len, stdin);
 
@@ -83,7 +105,7 @@ int main(void)
 		execute_command(args);
 		free_tokens(args, token_count);
 	}
-	while (status);
+while (status);
 free(line);
 
 return (0);

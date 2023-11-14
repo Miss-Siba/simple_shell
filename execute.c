@@ -24,19 +24,29 @@ void execute_command(char **argv)
 	if (pid == -1)
 	{
 		perror("Fork failed");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	else if (pid == 0)
 	{
 		execv(argv[0], argv);
 		perror("Command not found");
-		exit(1);
+		fprintf(stderr, "Failed to execute command: %s\n", argv[0]);
+		exit(EXIT_FAILURE);
 	}
 	else
 	{
 		int status;
 
 		waitpid(pid, &status, 0);
+
+		if (WIFEXITED(status))
+		{
+			printf("Child process exited with status %d\n", WEXITSTATUS(status));
+		}
+		else if (WIFSIGNALED(status))
+		{
+			printf("Child process terminted by signal %d\n", WTERMSIG(status));
+		}
 	}
 }
 

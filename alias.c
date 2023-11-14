@@ -9,7 +9,7 @@ void add_alias(ShellState *state, char *alias_name, char *alias_value)
 {
 	int i = 0;
 
-	if (state->count < MAX_ALIAS)
+	if (state->count < MAX_ALIASES)
 	{
 		for (i = 0; i < state->count; i++)
 		{

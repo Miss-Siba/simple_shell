@@ -15,21 +15,19 @@
 #define MAX_ARGUMENTS 64
 #define MAX_LINE 80
 #define MAX_TOKENS 32
-#define MAX_ALIAS 20
+#define MAX_ALIASES 100
 #define PROMPT "dreamteam$"
 #define MAX_VARS 100
 
 typedef struct
 {
-	char *name;
-	char *value;
-}
-Alias;
-
-typedef struct
-{
-	Alias aliases[MAX_ALIAS];
 	int count;
+	struct
+	{
+		char *name;
+		char *value;
+	}
+	aliases[MAX_ALIASES];
 }
 ShellState;
 

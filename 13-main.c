@@ -19,7 +19,7 @@ void process_command(char *line, ShellState *state)
 	if (strcmp(line, "exit") == 0)
 	{
 		printf("Exiting the shell.\n");
-		break;
+		exit(0);
 	}
 	else if (strncmp(line, "alias", 5) == 0)
 	{
@@ -30,11 +30,11 @@ void process_command(char *line, ShellState *state)
 		{
 			if (alias_value != NULL)
 			{
-				add_alias(&state, alias_name, alias_value);
+				add_alias(state, alias_name, alias_value);
 			}
 			else
 			{
-				list_aliases(&state);
+				list_aliases(state);
 			}
 		}
 	}

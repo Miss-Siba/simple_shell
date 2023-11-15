@@ -1,5 +1,21 @@
 #include "shell.h"
 /**
+ * initialize_shell_state - initialization
+ * @state: state
+ */
+void initialize_shell_state(ShellState *state)
+{
+	int i;
+
+	state->count = 0;
+
+	for (i = 0; i < MAX_ALIASES; ++i)
+	{
+		state->aliases[i].name = NULL;
+		state->aliases[i].value = NULL;
+	}
+}
+/**
  * add_alias - add alias.
  * @state: shell state
  * @alias_name: name

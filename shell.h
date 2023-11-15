@@ -52,6 +52,7 @@ variable;
 
 extern char **environ;
 int is_builtin(char *cmd);
+void initialize_shell_state(ShellState *state);
 int handle_execution_result(int status);
 int read_and_parse_input(char *line, size_t len, char *args[]);
 char **tokenize_line(char *line, int *token_count);

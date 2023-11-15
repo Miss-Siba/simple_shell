@@ -19,7 +19,7 @@ int main(void)
 
 	while (1)
 	{
-		printf("Dreamteam$ "), fflush(stdout);
+		printf("$ "), fflush(stdout);
 		nchars_read = getline(&line, &len, stdin);
 		if (nchars_read == -1)
 		{

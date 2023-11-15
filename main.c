@@ -30,8 +30,9 @@ int main(void)
 		{
 			break;
 		}
+		strcat(line, "\\n");
 		line[strcspn(line, "\n")] = '\0';
-		
+
 		tokens = tokenize_line(line, &token_count);
 		if (tokens == NULL)
 		{

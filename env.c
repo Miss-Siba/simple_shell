@@ -9,7 +9,8 @@ void print_env(void)
 
 	while (*env)
 	{
-		puts(*env);
-		env++;
+	write(1, *env, strlen(*env));
+	write(1, "\n", 1);
+	env++;
 	}
 }

@@ -19,12 +19,14 @@ void execute_single_command(char *file)
  */
 int handle_execution_result(int status)
 {
-	if (WIFEXITED(status) && WEXITEDSTATUS(status) != 0)
+	int exit_status = WEXITSTATUS(status);
+
+	if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
 	{
 		fprintf(stderr, "Command failed with exit status %d\n", exit_status);
 		return (-1);
 	}
-	else
+	else if (!WIFEXITED(status))
 	{
 		fprintf(stderr, "Command terminated abnormally\n");
 		return (-1);
@@ -49,6 +51,8 @@ int main(int argc, char *argv[])
 	}
 	for (i = 1; i < argc; i++)
 	{
+		char *file = argv[i];
+
 		pid_t pid = fork();
 
 		if (pid == -1)
@@ -58,7 +62,7 @@ int main(int argc, char *argv[])
 		}
 		else if (pid == 0)
 		{
-			execute_command(argv[i]);
+			execute_single_command(file);
 
 		}
 		else

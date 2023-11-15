@@ -19,11 +19,11 @@ int main(void)
 		if (nchars_read == -1)
 		{
 			perror("Command not found.\n");
-			return (-1);
+			continue;
 		}
 		if (feof(stdin))
 		{
-			return (-1);
+			break;
 		}
 		argv = tokenize_line(line, &token_count);
 
@@ -35,8 +35,7 @@ int main(void)
 		if (is_builtin(argv[0]))
 		{
 			free_tokens(argv, token_count);
-			free(line);
-			return (0);
+			continue;
 		}
 		else
 		{

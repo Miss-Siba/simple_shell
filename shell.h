@@ -78,5 +78,6 @@ int handle_builtin(char **tokens, int token_count);
 int setenv_unsetenv(void);
 int processFile(const char *filename);
 void initialize_shell_state(ShellState *state);
+int handle_exit(char **args, int *exit_flag);
 
 #endif

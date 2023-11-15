@@ -1,38 +1,19 @@
 #include "shell.h"
 /**
- * handle_builtin - handles builtin commands
- * @tokens: tokens
- * @token_count: counts tokens
+ * handle_exit - handles exit.
+ * @args: arguments
  * Return: 0
  */
-int handle_builtin(char **tokens, int token_count)
+int handle_exit(char **args, int *exit_flag)
 {
-	int status = -1;
-	int temp_status;
+	int status = 0;
 
-	if (token_count == 1)
+	if (args[1] != NULL)
 	{
-		free(tokens);
-		status = 0;
+		status =atoi(args[1]);
 	}
-	else if (token_count == 2)
-	{
-		temp_status = atoi(tokens[1]);
-		if (temp_status != 0)
-		{
-			status = temp_status;
-			free(tokens);
-		}
 
-		else
-		{
-			perror("Invalid exit status");
-		}
-	}
-	else
-	{
-		perror("Too many arguments");
-	}
+	printf("Exiting the shell with status %d.\n", status);
+	*exit_flag = 1;
 	return (status);
 }
-

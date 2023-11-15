@@ -27,12 +27,12 @@ int handle_execution_result(int status)
 
 	if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
 	{
-		printf(stderr, "Command failed with exit status %d\n", exit_status);
+		printf("Command failed with exit status %d\n", exit_status);
 		return (-1);
 	}
 	else if (!WIFEXITED(status))
 	{
-		printf(stderr, "Command terminated abnormally\n");
+		printf("Command terminated abnormally\n");
 		return (-1);
 	}
 	return (0);

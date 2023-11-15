@@ -44,7 +44,7 @@ void add_alias(ShellState *state, char *alias_name, char *alias_value)
 	}
 	else
 	{
-		printf(stderr, "Max alias reached.\n");
+		printf("Max alias reached.\n");
 	}
 }
 /**
@@ -95,5 +95,5 @@ void remove_alias(ShellState *state, char *alias_name)
 			return;
 		}
 	}
-	printf(stderr, "Alias '%s' not found.\n", alias_name);
+	printf("Alias '%s' not found.\n", alias_name);
 }

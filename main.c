@@ -9,8 +9,9 @@ int main(void)
 	size_t len = 0;
 	ssize_t nchars_read;
 	int token_count = 0;
-	
+
 	ShellState state;
+
 	initialize_shell_state(&state);
 
 

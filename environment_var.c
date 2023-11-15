@@ -10,7 +10,7 @@ int setenv_unsetenv(void)
 
 	if (setenv("VARIABLE", "dreamteam", 1) != 0)
 	{
-		printf(stderr, "Error setting environment variable\n");
+		printf("Error setting environment variable\n");
 			return (-1);
 	}
 	else
@@ -20,7 +20,7 @@ int setenv_unsetenv(void)
 	}
 	if (unsetenv("VARIABLE") != 0)
 	{
-		printf(stderr, "Error unsetting environment variable\n");
+		printf("Error unsetting environment variable\n");
 		return (-1);
 	}
 

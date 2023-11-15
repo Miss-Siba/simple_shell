@@ -45,15 +45,17 @@ void execute_child(char **argv)
 /**
  * execute_command - executes exit command.
  * @argv: argument vector.
+ * Return: 1 if exit command, 0 otherwise.
  */
 
 void execute_command(char **argv)
 {
-	int *exit_flag = 0;
+
 
 	if (strcmp(argv[0], "exit") == 0)
 	{
-		*exit_flag = 1;
+		printf("Exiting the shell.\n");
+		exit(EXIT_SUCCESS);
 	}
 	else if (strcmp(argv[0], "env") == 0)
 	{

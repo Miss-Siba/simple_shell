@@ -44,11 +44,12 @@ void cd_command(char **args)
 	{
 		char *home = getenv("HOME");
 
-		change_directory(home);
+		chdir(home);
 	}
 	else if (args[2] != NULL)
 	{
-		fprintf(stderr, "cd: arguments are too many\n");
+		printf("cd: arguments are too many\n");
+		exit(EXIT_FAILURE);
 	}
 	else if (strcmp(args[1], "-") == 0)
 	{
@@ -56,11 +57,12 @@ void cd_command(char **args)
 
 		if (old_pwd != NULL)
 		{
-			change_directory(old_pwd);
+			chdir(old_pwd);
 		}
 		else
 		{
-			fprintf(stderr, "cd: OLDPWD not set\n");
+			printf("cd: OLDPWD not set\n");
+			exit(EXIT_FAILURE);
 		}
 	}
 	else
@@ -71,7 +73,8 @@ void cd_command(char **args)
 		}
 		else
 		{
-			fprintf(stderr, "cd: no such file or directory: %s\n", args[1]);
+			printf("cd: no such file or directory: %s\n", args[1]);
+			exit(EXIT_FAILURE);
 		}
 	}
 }

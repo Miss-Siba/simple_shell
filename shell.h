@@ -21,8 +21,9 @@
 
 /**
  * struct ShellState - Represents the state of the shell, including aliases.
- * @structaliases: structure of aliases
+ * @structaliases: array of structs that store the name and value of each alias
  * @count: The count of aliases stored in the state.
+ * Return: Nothing
  */
 typedef struct ShellState
 {
@@ -41,6 +42,7 @@ ShellState;
  * struct variable - Represents a variable with a name and a value.
  * @name: The name of the variable.
  * @value: The value of the variable.
+ * Return: Nothing
  */
 typedef struct variable
 {

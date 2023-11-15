@@ -56,7 +56,6 @@ int main(void)
 		perror("malloc");
 		exit(1);
 	}
-
 	while (should_run)
 	{
 		printf(PROMPT);

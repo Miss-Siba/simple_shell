@@ -19,8 +19,14 @@
 #define PROMPT "dreamteam$"
 #define MAX_VARS 100
 
-typedef struct
+/**
+ * struct ShellState - Represents the state of the shell, including aliases.
+ * @structaliases: structure of aliases
+ * @count: The count of aliases stored in the state.
+ */
+typedef struct ShellState
 {
+
 	int count;
 	struct
 	{
@@ -31,8 +37,14 @@ typedef struct
 }
 ShellState;
 
-typedef struct
+/**
+ * struct variable - Represents a variable with a name and a value.
+ * @name: The name of the variable.
+ * @value: The value of the variable.
+ */
+typedef struct variable
 {
+
 	char *name;
 	char *value;
 }
@@ -40,6 +52,7 @@ variable;
 
 extern char **environ;
 int is_builtin(char *cmd);
+int handle_execution_result(int status);
 int read_and_parse_input(char *line, size_t len, char *args[]);
 char **tokenize_line(char *line, int *token_count);
 void execute_command(char **argv);
@@ -58,6 +71,7 @@ ssize_t _getline(char **buffer, size_t *size, FILE *stream);
 char **parse_line(char *line);
 void execute_command(char **args);
 int is_comment(char *line);
+void execute_single_command(char *file);
 char *read_line(void);
 int handle_builtin(char **tokens, int token_count);
 

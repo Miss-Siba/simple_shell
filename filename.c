@@ -1,23 +1,17 @@
 #include "shell.h"
 /**
- * main - main
- * @argc: argument count
- * @argv: argument vector
+ * processFile - processes file.
+ * @filename: filename
  * Return: 0
  */
-int main(int argc, char *argv[])
+int processFile(const char *filename)
 {
-	const char *filename;
 	FILE *file;
 	char *line;
 	size_t len = 0;
+	char **argv;
+	int argc;
 
-	if (argc != 2)
-	{
-		fprintf(stderr, "Useage: %s <filename>\n", argv[0]);
-		exit(-1);
-	}
-	filename = argv[1];
 	file = fopen(filename, "r");
 
 	if (file == NULL)

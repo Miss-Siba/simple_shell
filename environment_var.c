@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
- * main - setenv and unsetenv.
+ * setenv_unsetenv - setenv and unsetenv.
  * Return: 0
  */
 
-int main(void)
+int setenv_unsetenv(void)
 {
 	char *value;
 
@@ -27,7 +27,7 @@ int main(void)
 	value = getenv("VARIABLE");
 	if (value == NULL)
 	{
-		printf("New VARIABLE = %s\n", value);
+		printf("Variable unset");
 	}
 	else
 	{

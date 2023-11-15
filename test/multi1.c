@@ -27,10 +27,11 @@ int read_and_parse_input(char *line, size_t len, char *args[])
 	else
 	{
 		i = 0;
-		args[i] = strsep(&line, " \t");
+		args[i] = strtok(line, " \t");
 		while (args[i] != NULL)
 		{
 			i++;
+			args[i] = strtok(NULL, " \t");
 		}
 		args[i] = NULL;
 		return (1);

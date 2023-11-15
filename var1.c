@@ -48,34 +48,3 @@ char *replace_var(char *command)
 
 	return (result);
 }
-/**
- * main - main
- * Return: 0
- */
-int main(void)
-{
-	char *input = NULL;
-	size_t len = 0;
-	ssize_t nchars;
-	char *result;
-
-	while (1)
-	{
-		printf("Dreamteam$ ");
-		nchars = getline(&input, &len, stdin);
-
-		if (nchars == -1)
-		{
-			break;
-		}
-		input[strcspn(input, "\n")] = '\0';
-
-		result = replace_var(input);
-
-		printf("Command with special variables: %s\n", result);
-
-		free(result);
-	}
-	free(input);
-	return (0);
-}

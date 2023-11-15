@@ -74,5 +74,8 @@ int is_comment(char *line);
 void execute_single_command(char *file);
 char *read_line(void);
 int handle_builtin(char **tokens, int token_count);
+int setenv_unsetenv(void);
+int processFile(const char *filename);
+void initialize_shell_state(ShellState *state);
 
 #endif

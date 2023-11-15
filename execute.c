@@ -30,7 +30,7 @@ void execute_command(char **argv)
 	{
 		execv(argv[0], argv);
 		perror("Command not found");
-		fprintf(stderr, "Failed to execute command: %s\n", argv[0]);
+		printf(stderr, "Failed to execute command: %s\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 	else

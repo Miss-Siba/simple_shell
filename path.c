@@ -5,7 +5,11 @@
  */
 void execute_single_command(char *file)
 {
-	char *cmd[] = {"which", file, NULL};
+	char *cmd[3];
+
+	cmd[0] = "which";
+	cmd[1] = file;
+	cmd[2] = NULL;
 
 	execvp(cmd[0], cmd);
 	perror("Command execution failed");

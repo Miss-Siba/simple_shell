@@ -10,7 +10,7 @@ int handle_exit(char **args, int *exit_flag)
 
 	if (args[1] != NULL)
 	{
-		status =atoi(args[1]);
+		status = atoi(args[1]);
 	}
 
 	printf("Exiting the shell with status %d.\n", status);

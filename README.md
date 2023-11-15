@@ -1,2 +1,4 @@
+Simple Shell Project
+Contributors: Sibabalwe Quma and Tshilidzi Tshivhase
 
-0x16. C - Simple Shell
+This project contains all the source code and compiled shell. The shell handles commands, path, alias variables and special separators. 

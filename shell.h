@@ -79,5 +79,7 @@ int setenv_unsetenv(void);
 int processFile(const char *filename);
 void initialize_shell_state(ShellState *state);
 int handle_exit(char **args, int *exit_flag);
+void execute_parent(pid_t pid);
+void execute_child(char **argv);
 
 #endif

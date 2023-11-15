@@ -9,7 +9,6 @@ int main(void)
 	size_t len = 0;
 	ssize_t nchars_read;
 	int token_count = 0;
-	int exit_flag = 0;
 	ShellState state;
 
 	initialize_shell_state(&state);
@@ -34,7 +33,7 @@ int main(void)
 			perror("Tokenization failed");
 			continue;
 		}
-		execute_command(tokens, &exit_flag);
+		execute_command(tokens);
 
 		free_tokens(tokens, token_count);
 	}

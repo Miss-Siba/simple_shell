@@ -10,7 +10,38 @@ int is_builtin(char *cmd)
 	return (strcmp(cmd, "env") == 0 || strcmp(cmd, "exit") == 0 ||
 			strcmp(cmd, "cd") == 0);
 }
+/**
+ * execute_parent - Waits for the child process to complete.
+ * @pid: Process ID of the child process.
+ */
+void execute_parent(pid_t pid)
+{
+	int status;
 
+	if (waitpid(pid, &status, 0) == -1)
+	{
+		perror("Error waiting for child process");
+		exit(EXIT_FAILURE);
+	}
+	if (WIFEXITED(status))
+	{
+		printf("Child process exited with status %d\n", WEXITSTATUS(status));
+	}
+	else if (WIFSIGNALED(status))
+	{
+		printf("Child process terminated by signal %d\n", WTERMSIG(status));
+	}
+}
+/**
+ * execute_child - Executes the command in the child process.
+ * @argv: Argument vector representing the command and its arguments.
+ */
+void execute_child(char **argv)
+{
+	execv(argv[0], argv);
+	perror("Failed to execute command");
+	exit(EXIT_FAILURE);
+}
 /**
  * execute_command - executes exit command.
  * @argv: argument vector.
@@ -18,35 +49,33 @@ int is_builtin(char *cmd)
 
 void execute_command(char **argv)
 {
+	int *exit_flag = 0;
 
-	pid_t pid = fork();
-
-	if (pid == -1)
+	if (strcmp(argv[0], "exit") == 0)
 	{
-		perror("Fork failed");
-		exit(EXIT_FAILURE);
+		*exit_flag = 1;
 	}
-	else if (pid == 0)
+	else if (strcmp(argv[0], "env") == 0)
 	{
-		execv(argv[0], argv);
-		perror("Command not found");
-		printf("Failed to execute command: %s\n", argv[0]);
-		exit(EXIT_FAILURE);
+		print_env();
 	}
 	else
 	{
-		int status;
 
-		waitpid(pid, &status, 0);
+		pid_t pid = fork();
 
-		if (WIFEXITED(status))
+		if (pid == -1)
 		{
-			printf("Child process exited with status %d\n", WEXITSTATUS(status));
+			perror("Fork failed");
+			exit(EXIT_FAILURE);
 		}
-		else if (WIFSIGNALED(status))
+		else if (pid == 0)
 		{
-			printf("Child process terminted by signal %d\n", WTERMSIG(status));
+			execute_child(argv);
+		}
+		else
+		{
+			execute_parent(pid);
 		}
 	}
 }
-

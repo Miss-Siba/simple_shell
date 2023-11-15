@@ -26,7 +26,8 @@ int main(void)
 		{
 			break;
 		}
-		line[strcspn(line, "\n")] = '\0';
+		strcat(line, "\\n");
+
 		tokens = tokenize_line(line, &token_count);
 		if (tokens == NULL)
 		{

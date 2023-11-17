@@ -3,7 +3,7 @@
  * handle_exit - handles exit.
  * @args: arguments
  * @exit_flag: exit
- * Return: 0
+ * Return: Status
  */
 int handle_exit(char **args, int *exit_flag)
 {
@@ -14,7 +14,6 @@ int handle_exit(char **args, int *exit_flag)
 		status = atoi(args[1]);
 	}
 
-	printf("Exiting the shell with status %d.\n", status);
 	*exit_flag = 1;
 	return (status);
 }
